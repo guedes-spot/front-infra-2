@@ -1,0 +1,29 @@
+schema-version: v1
+kind: manifest
+metadata:
+  name: front-infra-2
+  description: front-infra-2
+  stack-version-id: 01GXPBMXYR559V02AXK2BHYSHJ
+spec:
+  type: infra
+  plugins:
+    - name: test/managed-runtime/rds@0.0.8
+      plugin-version-id: 01GXNKXTSEPJFTT6TSK5828V2Q
+      type: infra
+      inputs:
+        db_name: DB
+        storage: storage
+        max_storage: '30'
+        environment: QA
+        tribe: Accounts
+        vpc_name: name
+        cidrs: CIDR
+        instance_type: db.t3.small
+        aws_rds_conn__CONNECTOR: my-connection-name
+      inputs-envs: {}
+      connectors:
+        - name: my-connection-name
+          type: aws-rds-conn
+  global-inputs: {}
+  global-computed-inputs: {}
+  repository: https://github.com/guedes-spot/front-infra-2
